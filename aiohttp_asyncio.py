@@ -13,6 +13,14 @@ async def fetch_content(url, session):
         print(f"{url} has loaded")
         return soup.find_all('meta')[:10]
 
+async def fetch_content(url, session):
+    print(f"load  {url}")
+    async with session.get(url) as response:
+        html = await response.text()
+        soup = BeautifulSoup(html, 'html.parser')
+        print(f"{url} has loaded")
+        return soup.find_all('meta')[:10]
+
 
 async def main():
     urls = [
